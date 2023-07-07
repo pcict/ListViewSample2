@@ -3,6 +3,8 @@ package com.websarva.wings.android.listviewsample2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -42,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, menuList);
         lvMenu.setAdapter(adapter);
 
-       // lvMenu.setOnItemClickListener(new ListItemClickListener());
+        lvMenu.setOnItemClickListener(new ListItemClickListener());
+    }
+
+    private class ListItemClickListener implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            OrderConfirmDialogFragment dialogFragment = new OrderConfirmDialogFragment();
+            dialogFragment.show(getSupportFragmentManager(), "OrderConfirmDialogFragment");
+        }
     }
 }
